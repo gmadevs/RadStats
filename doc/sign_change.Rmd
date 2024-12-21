@@ -1,0 +1,101 @@
+---
+title: "Significant Change in AUC"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Significant Change in AUC}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Overview
+
+This package provides functionality to determine whether a change in tissue-normalized AUC (Area Under the Curve) is statistically significant, based on a given baseline AUC, follow-up AUC, and within-subject coefficient of variation (wCV). The methods are derived from the statistical framework for longitudinal changes in AUC using a 95% confidence interval.
+
+---
+
+# Installation
+
+To install the package, use:
+
+```r
+# Install from GitHub (if hosted there)
+devtools::install_github("yourusername/auc-change-significance")
+```
+
+Or, if using a local tar.gz file:
+
+```r
+install.packages("path/to/package.tar.gz", repos = NULL, type = "source")
+```
+
+---
+
+# Functions
+
+## `check_sign`
+
+### Description
+This function evaluates whether the relative change in tissue-normalized AUC between a baseline and follow-up measurement is statistically significant.
+
+### Usage
+
+```r
+check_sign(Y1, Y2, wCV)
+```
+
+### Arguments
+
+- `Y1`: Numeric. Baseline tissue-normalized AUC.
+- `Y2`: Numeric. Follow-up tissue-normalized AUC.
+- `wCV`: Numeric. Within-subject coefficient of variation (as a decimal, e.g., 0.05 for 5%).
+
+### Details
+The function computes the relative change:
+
+\[ \text{Relative Change} = \frac{Y_2 - Y_1}{Y_1} \]
+
+It then evaluates this change against thresholds for significant increase and decrease based on:
+
+\[ k = 1.96 \times wCV \]
+
+and computes:
+
+- Threshold for significant increase: 
+\[ \frac{k^2 + k \sqrt{2 - k^2}}{1 - k^2} \]
+- Threshold for significant decrease:
+\[ \frac{k^2 - k \sqrt{2 - k^2}}{1 - k^2} \]
+
+### Value
+
+Returns a string indicating:
+
+- "Significant increase"
+- "Significant decrease"
+- "No significant change"
+
+### Example
+
+```r
+# Example data
+Y1 <- 100  # Baseline AUC
+Y2 <- 110  # Follow-up AUC
+wCV <- 0.05  # Coefficient of variation
+
+# Check significance
+result <- check_sign(Y1, Y2, wCV)
+cat("Result:", result, "\n")
+```
+
+---
+
+# Contributing
+
+Contributions are welcome! Please submit issues or pull requests via the GitHub repository.
+
+---
+
+# License
+
+This package is licensed under the MIT License. See the `LICENSE` file for details.

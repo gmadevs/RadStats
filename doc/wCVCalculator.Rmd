@@ -1,0 +1,73 @@
+---
+title: "Using wCVCalculator"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using wCVCalculator}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+The `wCVCalculator` package provides a function to calculate the Within-Subject Coefficient of Variation (wCV). This metric is useful in analyzing repeated measures data to quantify variability within subjects.
+
+# Installation
+
+To install the package, you can use the following command:
+
+```r
+devtools::install_github("yourusername/wCVCalculator")
+```
+
+# Function Overview
+
+The main function in this package is `calculate_wCV()`. This function computes the wCV from two numeric vectors of measurements.
+
+Here’s a quick overview of its usage:
+
+```r
+library(wCVCalculator)
+
+# Example data
+measurement1 <- c(100, 102, 98, 101, 99)
+measurement2 <- c(101, 103, 97, 100, 98)
+
+# Calculate wCV
+result <- calculate_wCV(measurement1, measurement2)
+```
+
+# Output Explanation
+
+The `calculate_wCV` function returns a list containing the following elements:
+
+- **WithinSubjectVariance**: The variance within subjects.
+- **WithinSubjectSD**: The standard deviation within subjects.
+- **OverallMean**: The overall mean of the measurements.
+- **wCV**: The Within-Subject Coefficient of Variation (as a percentage).
+- **Data**: A data frame with intermediate calculations, such as differences and squared differences.
+
+# Example Usage
+
+Here’s a detailed example:
+
+```r
+# Define measurements
+measurement1 <- c(100, 102, 98, 101, 99)
+measurement2 <- c(101, 103, 97, 100, 98)
+
+# Compute the wCV
+result <- calculate_wCV(measurement1, measurement2)
+
+# Print the result
+print(result)
+```
+
+# Conclusion
+
+The `wCVCalculator` package provides a simple and effective way to calculate the Within-Subject Coefficient of Variation, along with detailed intermediate statistics for further analysis.
+
+For more information, check the function documentation:
+
+```r
+?calculate_wCV
+```

@@ -1,0 +1,16 @@
+Package: RadStats
+Type: Package
+Title: Statistical methods for radiology research
+Version: 0.1.0
+Author: Giorgio Maria Agazzi
+Maintainer: Giorgio Maria Agazzi <giorgiomaria.agazzi@gmail.com>
+Description: Miscellaneous statistical methods for radiology studies
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
